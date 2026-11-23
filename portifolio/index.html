@@ -3,95 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivan Costa - Construindo Experiências Digitais</title>
+    <title>Ivan Costa | Desenvolvedor web</title>
+    <meta name="description" content="Portfólio de Ivan Costa, desenvolvedor web. Projetos: Vitrine do Futebol (app de peneiras), ferramentas de RH na SKA e mais.">
+    <meta name="theme-color" content="#FFD21F">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD21F'/%3E%3Ctext x='32' y='47' font-family='Arial' font-weight='900' font-size='42' text-anchor='middle' fill='%2315201A'%3EI%3C/text%3E%3C/svg%3E">
+
+    <!-- Fonte Archivo (Google Fonts): uma família só, usada estreita nos títulos e normal nos textos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Ivan Costa - Construindo Experiências Digitais</h1>
-        <nav>
-            <ul>
-                <li><a href="#sobre">Sobre Mim</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#contato">Contato</a></li>
-                <li><a href="#redes-sociais">Redes Sociais</a></li>
-            </ul>
-        </nav>
-    </header>
-    
- <a href="https://api.whatsapp.com/send?phone=+5551991733630&text=Olá, gostaria de saber mais sobre seus serviços!" class="whatsapp-icon" target="_blank">
-    <img src="whatsapp-icon.jpg" alt="Contato WhatsApp">
- </a>
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
+    <!-- ===== Faixa amarela: menu + abertura ===== -->
+    <div class="campo-amarelo" id="inicio">
+        <header class="topo largura">
+            <a class="marca" href="#inicio">Ivan Costa</a>
+            <nav class="menu" aria-label="Seções do site">
+                <ul>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                </ul>
+            </nav>
+            <a class="botao botao-cheio topo-botao" href="#contato">Falar comigo</a>
+        </header>
 
-    <section id="sobre">
-        <h2>Sobre Mim</h2>
-        <img src="diltoon.jpg" width="15%" height="10%" alt="Foto de Ivan">
-        <p>Olá! Sou Ivan, sou um estudante do SENAC- São Leopoldo, atualmente cursando no ensino médio, com metodologia integrado ao técnico de informática para a internet. Tenho interesse em desenvolvimento web e sempre busco aprimorar minhas habilidades em tecnologias modernas para criar soluções digitais inovadoras.</p>
-    </section>
+        <section class="abertura largura">
+            <div class="abertura-texto">
+                <h1>Faço ferramentas digitais que gente de verdade usa.</h1>
+                <p class="destaque">Sou o Ivan Costa, desenvolvedor web. Na SKA, automatizo processos do RH e cuido de uma assistente de IA para os colaboradores. No TCC, criei com um colega um aplicativo que aproxima jovens jogadores das peneiras de futebol.</p>
+                <p class="acoes">
+                    <a class="botao botao-cheio" href="#projetos">Ver projetos</a>
+                    <a class="botao botao-linha" href="https://github.com/ivancosta14" target="_blank" rel="noopener">Ver meu GitHub</a>
+                </p>
+            </div>
 
-    
-    <section id="projetos"> 
-        <h2>Projetos</h2>
-        <div class="galeria">
-            <a href="projeto1.html">Projeto 1</a>
-        </div>
-    </section> 
+            <!-- Amostra interativa do Vitrine do Futebol (a lógica está no script.js) -->
+            <div class="amostra">
+                <div class="celular" role="group" aria-label="Amostra interativa do aplicativo Vitrine do Futebol">
+                    <div class="app">
+                        <p class="app-topo">Peneiras</p>
+                        <div class="app-filtros">
+                            <label class="so-leitor" for="filtro-cidade">Filtrar por cidade</label>
+                            <input id="filtro-cidade" type="text" placeholder="Filtrar por cidade" autocomplete="off">
+                            <label class="so-leitor" for="filtro-categoria">Filtrar por categoria</label>
+                            <input id="filtro-categoria" type="text" placeholder="Categoria (ex: Sub-17)" autocomplete="off">
+                            <button type="button" id="botao-idade" class="app-botao-idade">Para minha idade</button>
+                        </div>
+                        <p class="so-leitor" id="app-contagem" aria-live="polite"></p>
+                        <ul class="app-lista" id="app-lista"></ul>
+                        <noscript><p class="app-vazio">Ative o JavaScript para testar os filtros.</p></noscript>
+                        <p class="app-abas" aria-hidden="true">
+                            <span class="ativa">Peneiras</span>
+                            <span>Inscrições</span>
+                            <span>Avisos</span>
+                            <span>Perfil</span>
+                        </p>
+                    </div>
+                </div>
+                <p class="legenda">Amostra do Vitrine do Futebol, meu TCC. Os filtros funcionam: aqui você é o Lucas, de <span id="idade-exemplo">17</span> anos, de São Leopoldo.</p>
+            </div>
+        </section>
+    </div>
 
-    <section id="habilidades">
-        <h2>Habilidades</h2>
-        <ul>
-            <li>
-                <strong>HTML:</strong> Sou capaz de criar estruturas semânticas e acessíveis.
-            </li>
-            <li>
-                <strong>CSS:</strong> Tenho experiência em estilizar páginas de forma responsiva.
-            </li>
-            <li>
-                <strong>Trabalho em equipe:</strong> Sempre busco colaborar e compartilhar conhecimentos com os colegas.
-            </li>
-            <li>
-                <strong>Comunicação:</strong>Habilidade para apresentar e explicar soluções técnicas de forma clara e eficiente.
-            </li>
-        </ul>
-      
-    </section>
+    <main id="conteudo">
 
-    <section id="contato">
-        <h2>Contato</h2>
-        <form>
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-            <br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <br>
+        <!-- ===== Projetos ===== -->
+        <section class="secao largura" id="projetos">
+            <h2>Projetos</h2>
 
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" required></textarea>
-            <br>
+            <article class="projeto" id="vitrine-do-futebol">
+                <header class="projeto-topo">
+                    <h3>Vitrine do Futebol</h3>
+                    <p class="projeto-contexto">TCC, 2026</p>
+                </header>
+                <div class="projeto-corpo">
+                    <div class="projeto-texto">
+                        <p>Aplicativo que reúne peneiras de futebol em um só lugar. O jogador vê primeiro as peneiras da sua cidade, filtra por categoria e idade, se inscreve e acompanha a resposta. O clube publica as peneiras, vê cada candidato com idade, cidade e vídeo, e confirma ou rejeita a inscrição.</p>
+                        <p>A ideia veio de uma pesquisa que fizemos com 35 pessoas: 60% apontaram a falta de divulgação como a maior dificuldade para encontrar peneiras.</p>
+                        <p>Fiz em dupla com o Vinícius, como trabalho de conclusão do curso técnico.</p>
+                        <p class="feito-com">Feito com React Native e Expo no aplicativo, Node.js e Express na API e MySQL no banco de dados.</p>
+                        <p><a href="https://github.com/ivancosta14/vitrine-do-futebol" target="_blank" rel="noopener">Ver o primeiro protótipo web no GitHub</a></p>
+                    </div>
+                    <figure class="projeto-figura">
+                        <ul class="pilha">
+                            <li>
+                                <div class="caixa"><strong>Aplicativo</strong><span>React Native com Expo, para celular e navegador</span></div>
+                                <p class="ligacao">pedidos e respostas em JSON</p>
+                            </li>
+                            <li>
+                                <div class="caixa"><strong>API</strong><span>Node.js com Express</span></div>
+                                <p class="ligacao">consultas SQL</p>
+                            </li>
+                            <li>
+                                <div class="caixa"><strong>Banco de dados</strong><span>MySQL, com cinco tabelas</span></div>
+                            </li>
+                        </ul>
+                        <figcaption>Como as partes do aplicativo conversam.</figcaption>
+                    </figure>
+                </div>
+            </article>
 
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
-    <main>
-    <section id="redes-sociais">
-        <h2>Redes Sociais</h2>
-        <ul>
-            <img src="instagram.jpg" width="2%"/>
-            <a href="https://www.instagram.com/ivan_opx/">@ivan_opx</a>
-        </ul>
-        <ul>
-            <img src="linkedin.jpg" width="2%" height="25"/>
-            <a href="https://www.linkedin.com/in/ivandilton-costa-092220332/">Ivandilton Costa</a>
-        </ul>
-    </section>
+            <article class="projeto" id="ska">
+                <header class="projeto-topo">
+                    <h3>Ferramentas de RH na SKA</h3>
+                    <p class="projeto-contexto">Trabalho atual</p>
+                </header>
+                <p class="projeto-intro">Sou jovem aprendiz em Pessoas e Cultura na SKA, empresa de engenharia e automação, e cuido das ferramentas digitais do RH. São sistemas internos, então conto o que fiz em vez de mostrar as telas.</p>
+
+                <section class="parte" id="skarleti">
+                    <div class="projeto-corpo">
+                        <div class="projeto-texto">
+                            <h4>Skarleti, a assistente de IA do RH</h4>
+                            <p>Chatbot que responde dúvidas dos colaboradores sobre benefícios, férias, folha de pagamento, uniformes, crachás, segurança do trabalho e recrutamento. Fica na página inicial do site de RH.</p>
+                            <p>Troquei o sistema antigo de palavras-chave por respostas de IA guiadas por uma base de links, redesenhei a interface, criei a avaliação das respostas e resolvi a demora para carregar que a hospedagem gratuita causava.</p>
+                            <p class="feito-com">Feita com Node.js, MongoDB e um modelo de linguagem, hospedada no Render.</p>
+                        </div>
+                        <figure class="projeto-figura">
+                            <div class="conversa">
+                                <p class="fala fala-pessoa">Como eu peço um crachá novo?</p>
+                                <p class="fala fala-bot">É pelo formulário de Solicitação de Crachás. Quer que eu te mande o link?</p>
+                                <p class="conversa-avaliacao">Essa resposta ajudou? <span aria-hidden="true">👍 👎</span></p>
+                            </div>
+                            <figcaption>Exemplo ilustrativo de conversa.</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="parte" id="automacoes">
+                    <div class="projeto-corpo">
+                        <div class="projeto-texto">
+                            <h4>Automações de formulários</h4>
+                            <p>Fluxos no Power Automate que pegam as respostas de formulários do Microsoft Forms e avisam as pessoas certas por e-mail, sem ninguém precisar copiar dados à mão.</p>
+                            <p>Trabalho nos fluxos de solicitação de crachás (com a foto anexada), requisição de vagas e movimentação de colaboradores. Os e-mails saem em HTML, com a identidade visual da empresa.</p>
+                            <p class="feito-com">Feitas com Power Automate, Microsoft Forms e HTML.</p>
+                        </div>
+                        <figure class="projeto-figura">
+                            <ol class="pilha passos">
+                                <li>
+                                    <div class="caixa"><strong>Formulário</strong><span>A pessoa preenche o pedido no Microsoft Forms</span></div>
+                                    <p class="ligacao">resposta enviada</p>
+                                </li>
+                                <li>
+                                    <div class="caixa"><strong>Fluxo</strong><span>O Power Automate lê as respostas e monta o e-mail</span></div>
+                                    <p class="ligacao">e-mail em HTML</p>
+                                </li>
+                                <li>
+                                    <div class="caixa"><strong>Equipe responsável</strong><span>Recebe o pedido completo, com os anexos</span></div>
+                                </li>
+                            </ol>
+                            <figcaption>O caminho de um pedido, do formulário até a equipe.</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="parte" id="sharepoint">
+                    <div class="projeto-corpo">
+                        <div class="projeto-texto">
+                            <h4>Site Pessoas &amp; Cultura no SharePoint</h4>
+                            <p>Administro o site de RH da empresa. Reorganizei a página inicial para a assistente aparecer logo no começo, cortei as repetições dos textos de abertura e venho redesenhando páginas como Recrutamento e Seleção, Crachás e Segurança do Trabalho com um padrão único de banners.</p>
+                            <p class="feito-com">Feito no SharePoint, dentro dos limites de layout da plataforma.</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+            <article class="projeto" id="loja">
+                <header class="projeto-topo">
+                    <h3>Dilton’s 7ech</h3>
+                    <p class="projeto-contexto">Primeiro projeto, 2024</p>
+                </header>
+                <div class="projeto-corpo">
+                    <div class="projeto-texto">
+                        <p>Onde eu comecei. É o site de uma loja de acessórios para celular, com página de vendas, controle de estoque e histórico de vendas. A proposta era estilizar uma loja que eu já tinha montado, e fiz isso em três dias.</p>
+                        <p>Deixo aqui para mostrar de onde eu parti: dois anos separam esta loja dos projetos acima.</p>
+                        <p class="feito-com">Feito com HTML e CSS.</p>
+                        <p><a href="https://github.com/ivancosta14/loja-estilizada-ivan" target="_blank" rel="noopener">Ver o código da loja no GitHub</a></p>
+                    </div>
+                    <figure class="projeto-figura">
+                        <img class="loja-logo" src="logoloja2.jpg" width="500" height="500" alt="Logo da loja Dilton’s 7ech: uma pantera roxa dentro de um círculo">
+                    </figure>
+                </div>
+            </article>
+        </section>
+
+        <!-- ===== Sobre ===== -->
+        <section class="secao largura" id="sobre">
+            <h2>Sobre</h2>
+            <div class="sobre-grade">
+                <img class="sobre-foto" src="diltoon.jpg" width="1001" height="1256" alt="Foto de Ivan Costa">
+                <div class="sobre-texto">
+                    <p class="destaque">Sou o Ivan, estudante do SENAC São Leopoldo, concluindo o Ensino Médio integrado ao Técnico em Informática para Internet.</p>
+                    <p>Comecei em 2024, com HTML e CSS. Hoje sou jovem aprendiz em Pessoas e Cultura na SKA, onde cuido das ferramentas digitais do RH: uma assistente de IA, automações de formulários e o site interno da área.</p>
+                    <p>No trabalho, atendo pessoas que não são de tecnologia. Por isso aprendi a ouvir o que elas precisam antes de programar e a explicar a solução de um jeito simples.</p>
+                    <p>Meu foco é desenvolvimento web, e sigo estudando para criar soluções cada vez melhores.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Habilidades ===== -->
+        <section class="secao largura" id="habilidades">
+            <h2>Habilidades</h2>
+            <dl class="habilidades">
+                <div>
+                    <dt>Front-end</dt>
+                    <dd>HTML, CSS, JavaScript e React Native com Expo</dd>
+                </div>
+                <div>
+                    <dt>Back-end</dt>
+                    <dd>Node.js, Express, MySQL e MongoDB</dd>
+                </div>
+                <div>
+                    <dt>Automação e Microsoft 365</dt>
+                    <dd>Power Automate, Microsoft Forms e SharePoint</dd>
+                </div>
+                <div>
+                    <dt>Ferramentas</dt>
+                    <dd>Git e GitHub, VS Code, Figma e Render</dd>
+                </div>
+                <div>
+                    <dt>Trabalho em equipe</dt>
+                    <dd>TCC feito em dupla e rotina diária com o time de RH</dd>
+                </div>
+                <div>
+                    <dt>Comunicação</dt>
+                    <dd>Apresento e explico soluções técnicas de forma clara, inclusive para quem não é da área</dd>
+                </div>
+            </dl>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Dilton's 7ech. Todos os direitos reservados.</p>
+    <!-- ===== Contato (o id redes-sociais continua existindo para links antigos) ===== -->
+    <section class="campo-amarelo contato" id="contato">
+        <div class="largura">
+            <h2>Fale comigo</h2>
+            <p class="destaque contato-texto">O jeito mais rápido é o WhatsApp. Também respondo no LinkedIn e no Instagram.</p>
+            <ul class="contato-lista" id="redes-sociais">
+                <li><a href="https://wa.me/5551991733630?text=Ol%C3%A1%2C%20Ivan!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener">WhatsApp <span>(51) 99173-3630</span></a></li>
+                <li><a href="https://www.linkedin.com/in/ivandilton-costa-092220332/" target="_blank" rel="noopener">LinkedIn <span>Ivandilton Costa</span></a></li>
+                <li><a href="https://www.instagram.com/ivan_opx/" target="_blank" rel="noopener">Instagram <span>@ivan_opx</span></a></li>
+                <li><a href="https://github.com/ivancosta14" target="_blank" rel="noopener">GitHub <span>ivancosta14</span></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer class="rodape largura">
+        <p>&copy; <span id="ano">2026</span> Ivan Costa. Feito com HTML, CSS e JavaScript.</p>
+        <p><a href="#inicio">Voltar ao topo</a></p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
-

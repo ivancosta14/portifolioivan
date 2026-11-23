@@ -1,262 +1,783 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
+/* =========================================================
+   Portfólio de Ivan Costa
+   Organização deste arquivo:
+   1. Variáveis (cores e medidas)     6. Projetos
+   2. Base                            7. Sobre
+   3. Menu do topo                    8. Habilidades
+   4. Abertura                        9. Contato e rodapé
+   5. Amostra do app (celular)
+   ========================================================= */
+
+/* ---------- 1. Variáveis ---------- */
+:root {
+    --giz: #F7F8F4;            /* fundo da página */
+    --superficie: #FFFFFF;     /* fundo das caixas dos diagramas */
+    --tinta: #15201A;          /* texto principal */
+    --tinta-suave: #4D5C53;    /* texto secundário */
+    --linha-fina: #C9D0C8;     /* divisórias leves */
+    --amarelo: #FFD21F;        /* cor da abertura e do contato */
+    --sobre-amarelo: #15201A;  /* texto em cima do amarelo (não muda no tema escuro) */
+    --verde: #1B8A3A;          /* verde do aplicativo Vitrine do Futebol */
+    --verde-texto: #136B2C;    /* verde mais escuro, para sublinhados e foco */
+
+    --fonte: "Archivo", Arial, Helvetica, sans-serif;
+    --largura-maxima: 1180px;
+    --margem: clamp(1.25rem, 5vw, 3rem);
+
+    color-scheme: light;
+}
+
+/* Tema escuro: acompanha a configuração do aparelho de quem visita */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --giz: #111813;
+        --superficie: #1A231D;
+        --tinta: #EDF1EA;
+        --tinta-suave: #A9B5AC;
+        --linha-fina: #33403A;
+        --verde-texto: #6FD08C;
+        color-scheme: dark;
+    }
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: var(--giz);
+    color: var(--tinta);
+    font-family: var(--fonte);
+    font-size: 1.0625rem;
     line-height: 1.6;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+    margin: 0 0 1em;
+}
+
+/* Títulos: mesma fonte do texto, só que estreita e bem pesada */
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+    font-stretch: 62%;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+}
+
+h2 {
+    font-size: clamp(2.75rem, 9vw, 5.5rem);
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+::selection {
+    background: var(--amarelo);
+    color: var(--sobre-amarelo);
+}
+
+/* Contorno visível para quem navega pelo teclado */
+:focus-visible {
+    outline: 3px solid var(--verde-texto);
+    outline-offset: 3px;
+}
+
+.campo-amarelo :focus-visible {
+    outline-color: var(--sobre-amarelo);
+}
+
+/* Ao clicar no menu, a seção não cola na borda de cima */
+[id] {
+    scroll-margin-top: 1rem;
+}
+
+/* Centraliza o conteúdo e dá margem nas laterais */
+.largura {
+    max-width: var(--largura-maxima);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--margem);
+    padding-right: var(--margem);
+}
+
+.secao {
+    padding-top: clamp(3.5rem, 9vw, 6.5rem);
+}
+
+main {
+    padding-bottom: clamp(3.5rem, 9vw, 6.5rem);
+}
+
+/* Links dentro dos textos */
+main a,
+.rodape a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--verde-texto);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+main a:hover,
+.rodape a:hover {
+    background: var(--amarelo);
+    color: var(--sobre-amarelo);
+    text-decoration-color: currentColor;
+}
+
+/* Texto de abertura de cada bloco, um pouco maior */
+.destaque {
+    max-width: 46ch;
+    font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Texto que só os leitores de tela leem */
+.so-leitor {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* Link "Pular para o conteúdo": aparece só quando recebe foco pelo teclado */
+.pular {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 10;
+    padding: 0.6rem 1rem;
+    background: var(--sobre-amarelo);
+    color: var(--amarelo);
+    font-weight: 700;
+}
+
+.pular:focus {
+    top: 1rem;
+}
+
+/* Faixa amarela (abertura e contato) */
+.campo-amarelo {
+    background: var(--amarelo);
+    color: var(--sobre-amarelo);
+}
+
+/* Botões */
+.botao {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    border: 2px solid var(--sobre-amarelo);
+    border-radius: 8px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.botao-cheio {
+    background: var(--sobre-amarelo);
+    color: var(--amarelo);
+}
+
+.botao-linha {
+    background: transparent;
+    color: var(--sobre-amarelo);
+}
+
+.botao-cheio:hover {
+    background: transparent;
+    color: var(--sobre-amarelo);
+}
+
+.botao-linha:hover {
+    background: var(--sobre-amarelo);
+    color: var(--amarelo);
+}
+
+/* ---------- 3. Menu do topo ---------- */
+.topo {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "marca botao"
+        "menu  menu";
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    padding-top: 1.25rem;
+}
+
+.marca {
+    grid-area: marca;
+    color: inherit;
+    font-size: 1.625rem;
+    font-stretch: 62%;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.topo-botao {
+    grid-area: botao;
+}
+
+.menu {
+    grid-area: menu;
+}
+
+.menu ul {
+    display: flex;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
-    background-color: #f9f6fd;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Header elegante com um fundo gradiente */
-/* Header estilizado com o título acima do nav */
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: auto;
-    background: linear-gradient(90deg, #a95df5, #c188fd);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 20px;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px; /* Espaço entre o título e o menu */
-}
-
-nav ul {
     list-style: none;
-    display: flex;
-    gap: 30px;
 }
 
-nav ul li a {
-    color: white;
+.menu a {
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    color: inherit;
+    font-weight: 600;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #ffda79;
+.menu a:hover {
+    border-bottom-color: currentColor;
 }
 
+/* Em telas maiores, tudo fica em uma linha só */
+@media (min-width: 720px) {
+    .topo {
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: "marca menu botao";
+    }
 
-
-/* Seção principal */
-section {
-    padding: 20px;
-    margin: 10px 0;
-    width: 100%;
-    max-width: 1200px;
-    text-align: center;
-    margin-top: 12vh; /* Compensar a altura do header fixo */
+    .menu ul {
+        justify-content: flex-end;
+        gap: 2rem;
+    }
 }
 
-/* Seção "Sobre Mim" com layout mais atraente */
-#sobre img {
-    display: block;
-    margin: 20px auto;
-    border-radius: 50%;
-    width: 200px;
-    height: 300px;
-    border: 4px solid #c188fd;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* ---------- 4. Abertura ---------- */
+.abertura {
+    display: grid;
+    gap: 3rem;
+    padding-top: clamp(2.5rem, 7vw, 4.5rem);
+    padding-bottom: clamp(3rem, 7vw, 5rem);
 }
 
-/* Galeria com layout moderno e interativo */
-.galeria {
+.abertura h1 {
+    line-height: 0.98;
+    font-size: clamp(3.25rem, 10.5vw, 6.75rem);
+    margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.acoes {
     display: flex;
-    justify-content: center;
-    gap: 20px;
     flex-wrap: wrap;
-    padding: 20px;
+    gap: 0.75rem;
+    margin: 2rem 0 0;
 }
 
-.galeria a {
-    color: white;
-    text-decoration: none;
-    background-color: #a95df5;
-    padding: 15px 25px;
-    border-radius: 12px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.amostra {
+    width: min(100%, 320px);
 }
 
-.galeria a:hover {
-    background-color: #8848c4;
-    
+.legenda {
+    margin: 1rem 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.45;
 }
 
-.galeria img {
-    width: 150px;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 10px;
-    display: block;
+@media (min-width: 940px) {
+    .abertura {
+        grid-template-columns: minmax(0, 1fr) 320px;
+        align-items: center;
+        gap: 4rem;
+    }
 }
 
-/* Formulário centralizado e estilizado */
-form {
+/* ---------- 5. Amostra do app (celular) ----------
+   As cores aqui são fixas porque imitam a tela do aplicativo,
+   que é sempre clara. */
+.celular {
+    border: 10px solid #15201A;
+    border-radius: 42px;
+    background: #15201A;
+    overflow: hidden;
+}
+
+.app {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
+    height: 560px;
+    border-radius: 32px;
+    overflow: hidden;
+    background: #F2F2F2;
+    color: #1F2A24;
+    font-size: 14px;
+    line-height: 1.35;
 }
 
-form input, form textarea {
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 15px;
-    padding: 15px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+.app p {
+    margin: 0;
 }
 
-button {
-    padding: 15px 30px;
-    background-color: #a95df5;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-button:hover {
-    background-color: #8848c4;
-}
-
-/* Seção de Redes Sociais */
-#redes-sociais a {
-    color: #333;
-    text-decoration: none;
+.app-topo {
+    padding: 18px 16px 14px;
+    background: var(--verde);
+    color: #FFFFFF;
     font-size: 18px;
-    transition: color 0.3s ease;
+    font-weight: 700;
 }
 
-#redes-sociais a:hover {
-    color: #c188fd;
-    text-decoration: underline;
+.app-filtros {
+    display: grid;
+    gap: 8px;
+    padding: 10px 12px 4px;
 }
 
-/* Footer simples, porém elegante */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #a95df5;
-    color: #fff;
+.app-filtros input {
     width: 100%;
-    position: sticky;
+    padding: 8px 12px;
+    border: 1px solid #D5D9D6;
+    border-radius: 10px;
+    background: #FFFFFF;
+    color: #1F2A24;
+    font-family: inherit;
+    font-size: 16px; /* 16px evita o zoom automático do iPhone ao tocar no campo */
 }
 
-/* Ajustes para dispositivos menores */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    header {
-        height: auto;
-        padding: 10px 20px;
-    }
-
-    section {
-        padding: 15px;
-    }
-
-    .galeria {
-        flex-direction: column;
-    }
-
-    .galeria a {
-        width: 100%;
-    }
-
-    form input, form textarea {
-        max-width: 100%;
-    }
-}
-
-/* Estilizando a seção de Habilidades */
-#habilidades ul {
-    list-style: disc;
-    list-style-position: inside; /* Faz com que os pontos fiquem dentro da lista */
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza os itens */
-}
-
-#habilidades ul li {
-    margin: 5px 0;
-    text-align: center; /* Centraliza o texto das habilidades */
-}
-
-#experiencia ul {
-    list-style: disc;
-    list-style-position: inside; /* Faz com que os pontos fiquem dentro da lista */
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza os itens */
-}
-
-#experiencia ul li {
-    margin: 5px 0;
-    text-align: center; /* Centraliza o texto das habilidades */
-}
-
-section{
-     flex: 1;
-     padding: 20px;
-     background: #fffefe;
-     border-radius: 8px;
-     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-main {
-    display: flex;
-    margin: 20px;
-}
-
-.whatsapp-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    z-index: 1000;
+.app-botao-idade {
+    padding: 9px;
+    border: 1.5px solid #15752F;
+    border-radius: 10px;
+    background: #FFFFFF;
+    color: #15752F;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
-    transition: transform 0.3s ease;
 }
 
-.whatsapp-icon img {
+.app-botao-idade:hover {
+    background: #E3F3E8;
+}
+
+.app-lista {
+    flex: 1;
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    margin: 0;
+    padding: 8px 12px 12px;
+    list-style: none;
+    overflow-y: auto;
+}
+
+.app-cartao {
+    display: grid;
+    gap: 2px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #FFFFFF;
+}
+
+.app-cartao-titulo {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.app-cartao-clube {
+    color: #15752F;
+}
+
+.app-cartao-info {
+    color: #5C6660;
+    font-size: 13px;
+}
+
+.app-cartao-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.app-etiqueta {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #E3F3E8;
+    color: #15752F;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.app-inscrever {
+    padding: 6px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: #15752F;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Depois de clicar em "Inscrever-se" */
+.app-inscrever.inscrito {
+    background: #E3F3E8;
+    color: #15752F;
+    cursor: default;
+}
+
+.app-vazio {
+    padding: 16px 8px;
+    color: #5C6660;
+    text-align: center;
+}
+
+.app-vazio button {
+    margin-top: 10px;
+}
+
+.app-abas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px 4px 12px;
+    border-top: 1px solid #E3E6E4;
+    background: #FFFFFF;
+    color: #6B756F;
+    font-size: 11px;
+    text-align: center;
+}
+
+.app-abas .ativa {
+    color: #15752F;
+    font-weight: 700;
+}
+
+/* ---------- 6. Projetos ---------- */
+.projeto {
+    padding-top: 1.25rem;
+    padding-bottom: clamp(2.5rem, 6vw, 4rem);
+    border-top: 3px solid var(--tinta);
+}
+
+.projeto:last-of-type {
+    padding-bottom: 0;
+}
+
+.projeto-topo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.projeto-topo h3 {
+    font-size: clamp(2.125rem, 6vw, 3.75rem);
+}
+
+.projeto-contexto {
+    margin: 0;
+    color: var(--tinta-suave);
+    font-weight: 500;
+}
+
+.projeto-intro {
+    max-width: 58ch;
+    margin-bottom: 2rem;
+    font-size: clamp(1.125rem, 2.2vw, 1.25rem);
+    line-height: 1.5;
+}
+
+/* Texto de um lado, figura do outro */
+.projeto-corpo {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 860px) {
+    .projeto-corpo {
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        gap: 4rem;
+    }
+}
+
+.projeto-texto {
+    max-width: 62ch;
+}
+
+.projeto-texto p:last-child {
+    margin-bottom: 0;
+}
+
+.feito-com {
+    font-weight: 600;
+}
+
+/* Cada parte do trabalho na SKA */
+.parte {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-top: 1px solid var(--linha-fina);
+}
+
+.parte:last-child {
+    padding-bottom: 0;
+}
+
+.parte h4 {
+    margin-bottom: 0.75rem;
+    font-size: clamp(1.5rem, 3.6vw, 2rem);
+    font-weight: 800;
+    line-height: 1.05;
+}
+
+.projeto-figura {
+    margin: 0;
+}
+
+.projeto-figura figcaption {
+    margin-top: 0.75rem;
+    color: var(--tinta-suave);
+    font-size: 0.875rem;
+}
+
+/* Diagrama em pilha: caixas ligadas por uma linha */
+.pilha {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: passo;
+}
+
+.pilha .caixa {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--tinta);
+    background: var(--superficie);
+}
+
+.pilha .caixa strong {
+    display: block;
+    font-size: 1.375rem;
+    font-stretch: 62%;
+    font-weight: 800;
+    line-height: 1.15;
+}
+
+.pilha .caixa span {
+    color: var(--tinta-suave);
+    font-size: 0.9375rem;
+}
+
+.pilha .ligacao {
+    margin: 0 0 0 1.5rem;
+    padding: 0.7rem 0 0.7rem 1rem;
+    border-left: 2px solid var(--tinta);
+    color: var(--tinta-suave);
+    font-size: 0.875rem;
+}
+
+/* Quando o diagrama é um passo a passo, numera as caixas */
+.passos li {
+    counter-increment: passo;
+}
+
+.passos .caixa strong::before {
+    content: counter(passo) ". ";
+}
+
+/* Exemplo de conversa da Skarleti */
+.conversa {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 2px solid var(--tinta);
+    background: var(--superficie);
+}
+
+.fala {
+    max-width: 85%;
+    margin: 0;
+    padding: 0.65rem 0.9rem;
+    border-radius: 16px;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+}
+
+.fala-pessoa {
+    justify-self: end;
+    border-bottom-right-radius: 4px;
+    background: var(--amarelo);
+    color: var(--sobre-amarelo);
+}
+
+.fala-bot {
+    justify-self: start;
+    border: 1px solid var(--linha-fina);
+    border-bottom-left-radius: 4px;
+    background: var(--giz);
+}
+
+.conversa-avaliacao {
+    margin: 0;
+    color: var(--tinta-suave);
+    font-size: 0.8125rem;
+}
+
+.loja-logo {
+    width: min(100%, 260px);
+}
+
+/* ---------- 7. Sobre ---------- */
+.sobre-grade {
+    display: grid;
+    gap: 2rem;
+}
+
+.sobre-foto {
     width: 100%;
-    height: auto;
-    border-radius: 50%;
+    max-width: 360px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 20%;
 }
 
+.sobre-texto {
+    max-width: 60ch;
+}
 
+@media (min-width: 760px) {
+    .sobre-grade {
+        grid-template-columns: minmax(220px, 4fr) 8fr;
+        align-items: start;
+        gap: 4rem;
+    }
+}
 
+/* ---------- 8. Habilidades ---------- */
+.habilidades {
+    margin: 0;
+    border-top: 3px solid var(--tinta);
+}
 
+.habilidades div {
+    display: grid;
+    gap: 0.25rem 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--linha-fina);
+}
+
+.habilidades dt {
+    font-weight: 700;
+}
+
+.habilidades dd {
+    margin: 0;
+}
+
+@media (min-width: 700px) {
+    .habilidades div {
+        grid-template-columns: 17rem 1fr;
+    }
+}
+
+/* ---------- 9. Contato e rodapé ---------- */
+.contato {
+    padding-top: clamp(3.5rem, 9vw, 6rem);
+    padding-bottom: clamp(3.5rem, 9vw, 6rem);
+}
+
+.contato-texto {
+    margin-bottom: 2rem;
+}
+
+.contato-lista {
+    margin: 0;
+    padding: 0;
+    border-bottom: 3px solid var(--sobre-amarelo);
+    list-style: none;
+}
+
+/* Cada contato é um link grande, com o usuário/telefone à direita */
+.contato-lista a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0 1.5rem;
+    padding: 0.75rem 0;
+    border-top: 3px solid var(--sobre-amarelo);
+    color: inherit;
+    font-size: clamp(2.25rem, 8vw, 4.5rem);
+    font-stretch: 62%;
+    font-weight: 900;
+    line-height: 1;
+    text-decoration: none;
+    transition: padding 0.15s ease;
+}
+
+.contato-lista a span {
+    font-size: 1rem;
+    font-stretch: 100%;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.contato-lista a:hover {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background: var(--sobre-amarelo);
+    color: var(--amarelo);
+}
+
+.rodape {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    color: var(--tinta-suave);
+    font-size: 0.9375rem;
+}
+
+.rodape p {
+    margin: 0;
+}
+
+/* Quem prefere menos movimento não vê rolagem animada nem transições */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .contato-lista a {
+        transition: none;
+    }
+}
